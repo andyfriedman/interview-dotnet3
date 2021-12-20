@@ -39,7 +39,7 @@ namespace GroceryStoreAPI.Controllers
             {
                 _logger.LogInformation($"{nameof(GetAll)} endpoint called");
                 var customers = Enumerable.Cast<Customer>(_repository.GetAll());
-                return customers != null ? new OkObjectResult(customers) : new NotFoundResult();
+                return customers != null && customers.Any() ? new OkObjectResult(customers) : new NotFoundResult();
             }
             catch (Exception ex)
             {
